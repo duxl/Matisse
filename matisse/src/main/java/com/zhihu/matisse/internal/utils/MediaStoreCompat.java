@@ -73,7 +73,7 @@ public class MediaStoreCompat {
 
     public void dispatchCaptureIntent(Context context, int requestCode) {
         Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (captureIntent.resolveActivity(context.getPackageManager()) != null) {
+//        if (captureIntent.resolveActivity(context.getPackageManager()) != null) {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
@@ -102,7 +102,7 @@ public class MediaStoreCompat {
                     mContext.get().startActivityForResult(captureIntent, requestCode);
                 }
             }
-        }
+//        }
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -112,13 +112,14 @@ public class MediaStoreCompat {
                 new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = String.format("JPEG_%s.jpg", timeStamp);
         File storageDir;
-        if (mCaptureStrategy.isPublic) {
-            storageDir = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES);
-            if (!storageDir.exists()) storageDir.mkdirs();
-        } else {
+//        if (mCaptureStrategy.isPublic) {
+//            storageDir = Environment.getExternalStoragePublicDirectory(
+//                    Environment.DIRECTORY_PICTURES);
+//        } else {
             storageDir = mContext.get().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        }
+            if (!storageDir.exists()) storageDir.mkdirs();
+
+//        }
         if (mCaptureStrategy.directory != null) {
             storageDir = new File(storageDir, mCaptureStrategy.directory);
             if (!storageDir.exists()) storageDir.mkdirs();
