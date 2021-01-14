@@ -190,6 +190,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                 super(contentView);
                 mUri = (TextView) contentView.findViewById(R.id.uri);
                 mPath = (TextView) contentView.findViewById(R.id.path);
+
             }
         }
     }
